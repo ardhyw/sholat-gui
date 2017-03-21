@@ -1,0 +1,191 @@
+<RootWidget>:
+    orientation: 'vertical'
+    BoxLayout:
+        size_hint_y: None
+        height: '48sp'
+        ToggleButton:
+            group: 'menu'
+            text: 'Jadwal'
+            state: 'down'
+            on_release: sm.current = 'jadwal'
+        ToggleButton:
+            group: 'menu'
+            text: 'Teks'
+            on_release: sm.current = 'teks'
+        ToggleButton:
+            group: 'menu'
+            text: 'Setting'
+            on_release: sm.current = 'setting'
+    ScreenManager:
+        id: sm
+        Screen:
+            name: 'jadwal'
+            BoxLayout:
+                orientation: 'vertical'
+                padding: '16sp'
+                GridLayout:
+                    cols: 4
+                    size_hint_y: None
+                    row_default_height: '48sp'
+                    spacing: '16sp'
+                    Label:
+                        text: 'Preset'
+                    Spinner:
+                        value: 'Jakarta'
+                        values: ['Aceh', 'Medan', 'Palembang', 'Jakarta', 'Semarang']
+                    Label:
+                        text: 'Longitude'
+                        halign: 'center'
+                    TextInput:
+                        id: longlat
+                        size_hint_y: None
+                        height: '16sp'
+                        padding: '16sp'
+                    Label:
+                        text: 'Latitude'
+                        halign: 'center'
+                    TextInput:
+                        id: longlat
+                        size_hint_y: None
+                        height: '16sp'
+                        padding: '16sp'
+                    Label:
+                        text: 'Zona waktu'
+                    TextInput:
+                        id: timezone
+                        text: '+7'
+                        height: '16sp'
+                        padding: '16sp'
+                    Label:
+                        text: 'Metode perhitungan'
+                    Spinner:
+                        text: 'Makkah'
+                        values: ['Makkah', 'MWL', 'Karachi']
+                    Label:
+                        text: 'Offset'
+                    TextInput:
+                        id: offset
+                        height: '16sp'
+                        padding: '16sp'
+                    Label:
+                        text: 'Jeda iqomah\n(pendek)'
+                        halign: 'center'
+                    TextInput:
+                        id: jeda
+                        height: '16sp'
+                        padding: '16sp'
+                    Label:
+                        text: 'Jeda iqomah\n(panjang)'
+                        halign: 'center'
+                    TextInput:
+                        id: longlat
+                        size_hint_y: None
+                        height: '16sp'
+                        padding: '16sp'
+
+                Label:
+                    id: output
+                    text: 'Sample jadwal pada hari ini'
+        Screen:
+            name: 'teks'
+            BoxLayout:
+                orientation: 'vertical'
+                spacing: '16sp'
+                padding: '16sp'
+                BoxLayout:
+                    spacing: '16sp'
+                    size_hint_y: None
+                    height: '176sp'
+                    GridLayout:
+                        cols: 2
+                        size_hint_y: None
+                        spacing: '16sp'
+                        row_default_height: '48sp'
+                        height: self.minimum_height
+                        Label:
+                            text: 'Gerakan teks'
+                        Spinner:
+                            text: 'Kanan ke kiri'
+                            values: ['Kanan ke kiri', 'Bawah ke atas', 'Berpendar']
+                        Label:
+                            text: 'Durasi tampil'
+                        Spinner:
+                            text: 'Normal'
+                            values: ['Sebentar', 'Normal', 'Lama']
+                        Label:
+                            text: 'Kecepatan gerak'
+                        Spinner:
+                            text: 'Normal'
+                            values: ['Lambat', 'Normal', 'Cepat']
+                    BoxLayout:
+                        spacing: '16sp'
+                        orientation: 'vertical'
+                        TextInput:
+                            id: teks
+                            text: 'Tulis running text disini'
+                            padding: '16sp'
+                        BoxLayout:
+                            spacing: '16sp'
+                            size_hint_y: None
+                            height: '48sp'
+                            Button:
+                                text: 'Buang'
+                            Button:
+                                text: 'Simpan'
+                Label:
+                    text: 'isi nya list view'
+
+        Screen:
+            name: 'setting'
+            BoxLayout:
+                spacing: '16sp'
+                padding: '16sp'
+                orientation: 'vertical'
+                GridLayout:
+                    cols: 1
+                    spacing: '16sp'
+                    height: self.minimum_height
+                    row_default_height: '48sp'
+                    size_hint_y: None
+                    # file browser
+                    Label:
+                        text: 'File konfigurasi'
+                        text_size: self.size
+                        font_size: '18sp'
+                    BoxLayout:
+                        spacing: '16sp'
+                        size_hint_y: None
+                        height: '48sp'
+                        TextInput:
+                            padding: '16sp'
+                        Button:
+                            text: 'Browse'
+                            size_hint_x: None
+                            width: '100sp'
+                        Button:
+                            text: 'Simpan'
+                            size_hint_x: None
+                            width: '100sp'
+
+                    # Perangkat
+                    Label:
+                        text: 'Perangkat'
+                        text_size: self.size
+                        font_size: '18sp'
+                    BoxLayout:
+                        spacing: '16sp'
+                        Spinner:
+                            text: 'Port'
+                        Spinner:
+                            text: 'Baud rate'
+                        Button:
+                            text: 'Open'
+                            size_hint_x: None
+                            width: '100sp'
+                        Button:
+                            text: 'Upload'
+                            size_hint_x: None
+                            width: '100sp'
+                Label:
+                    text: 'Logging'
+                    text_size: self.size
