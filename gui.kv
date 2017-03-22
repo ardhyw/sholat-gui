@@ -1,4 +1,13 @@
 <RootWidget>:
+    metode: metode
+    lgt: lgt
+    lat: lat
+    timezone: timezone
+    offset: offset
+    jeda_pendek: jeda_pendek
+    jeda_panjang: jeda_panjang
+    perhitungan: perhitungan
+
     orientation: 'vertical'
     BoxLayout:
         size_hint_y: None
@@ -26,6 +35,8 @@
                 orientation: 'vertical'
                 padding: '16sp'
 
+                BoxLayout:
+
                 Label:
                     id: tanggal
                     text: 'Ahad / 01 Jan 2017 / 02 Rab-II 1438 H / 01:23:45'
@@ -35,10 +46,14 @@
                     size_hint_y: None
                     padding: '12sp','12sp'
 
-                Label:
+                GridLayout:
+                    rows: 2
                     id: perhitungan
-                    text: 'Subuh - Syuruq - Dzuhur - Ashar - Maghrib - Isya'
-                    font_name: 'RobotoMono-Regular'
+                    row_default_height: '48sp'
+                    size_hint_y: None
+                    height: self.minimum_height
+                
+                BoxLayout:
 
                 GridLayout:
                     cols: 4
@@ -57,25 +72,33 @@
                         text: 'Longitude'
                         halign: 'center'
                     TextInput:
-                        id: longlat
+                        id: lgt
                         size_hint_y: None
                         height: '16sp'
                         padding: '16sp'
+                        text: '-6.393985'
+                        on_text_validate: root.do_hisab()
+                        multiline: False
 
                     Label:
                         text: 'Metode perhitungan'
                     Spinner:
+                        id: metode
                         text: 'Makkah'
-                        values: ['Makkah', 'MWL', 'Karachi']
+                        values: ['Makkah', 'MWL', 'Karachi', 'Egypt']
+                        on_text: root.do_hisab()
 
                     Label:
                         text: 'Latitude'
                         halign: 'center'
                     TextInput:
-                        id: longlat
+                        id: lat
                         size_hint_y: None
                         height: '16sp'
                         padding: '16sp'
+                        text: '106.798225'
+                        multiline: False
+                        on_text_validate: root.do_hisab()
                     
                     Label:
                         text: 'Zona waktu'
@@ -84,14 +107,17 @@
                         text: '+7'
                         height: '16sp'
                         padding: '16sp'
+                        multiline: False
+                        on_text_validate: root.do_hisab()
 
                     Label:
                         text: 'Jeda iqomah\n(pendek)'
                         halign: 'center'
                     TextInput:
-                        id: jeda
+                        id: jeda_pendek
                         height: '16sp'
                         padding: '16sp'
+                        multiline: False
 
                     Label:
                         text: 'Offset'
@@ -99,15 +125,18 @@
                         id: offset
                         height: '16sp'
                         padding: '16sp'
+                        multiline: False
+                        on_text_validate: root.do_hisab()
 
                     Label:
                         text: 'Jeda iqomah\n(panjang)'
                         halign: 'center'
                     TextInput:
-                        id: longlat
+                        id: jeda_panjang
                         size_hint_y: None
                         height: '16sp'
                         padding: '16sp'
+                        multiline: False
 
         Screen:
             name: 'teks'
