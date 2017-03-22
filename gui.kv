@@ -1,4 +1,5 @@
 <RootWidget>:
+    preset: preset
     metode: metode
     lgt: lgt
     lat: lat
@@ -39,7 +40,6 @@
 
                 Label:
                     id: tanggal
-                    text: 'Ahad / 01 Jan 2017 / 02 Rab-II 1438 H / 01:23:45'
                     font_size: '24sp'
                     halign: 'center'
                     height: '48sp'
@@ -67,6 +67,7 @@
                     Spinner:
                         id: preset
                         text: 'Jakarta'
+                        on_text: root.do_preset()
                     
                     Label:
                         text: 'Longitude'
