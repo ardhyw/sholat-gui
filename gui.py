@@ -5,6 +5,16 @@ from kivy.uix.label import Label
 from datetime import date
 from praytimes import PrayTimes
 from kivy.clock import Clock
+from kivy.adapters.listadapter import ListAdapter
+from kivy.uix.listview import ListView, ListItemButton
+from kivy.properties import NumericProperty
+
+class ListItemBtn(ListItemButton):
+    index = NumericProperty()
+
+    def __init__(self, **kw):
+        super(ListItemBtn, self).__init__(**kw)
+        self.index = kw['index']
 
 class RootWidget(BoxLayout):
     presets = {
@@ -18,9 +28,31 @@ class RootWidget(BoxLayout):
 
     def __init__(self, **kw):
         super(RootWidget, self).__init__(**kw)
+
+        # preset data
         self.ids['preset'].values = sorted(self.presets.keys())
+
+        # tanggal hari ini
         self.ids['tanggal'].text = date.strftime(date.today(), "%a, %d %b %Y")
+
+        # auto load hisab for the first time
         Clock.schedule_once(self._do_hisab, 2)
+
+        # prepare listview utk running text profile
+        args_converter = lambda rowindex, value: {'text':value, 'index':rowindex}
+        self.list_adapter = ListAdapter(
+                data=['tes':{},'2','3','4','5','6','7','8','9','10'],
+                args_converter=args_converter,
+                selection_mode='single',
+                cls=ListItemBtn
+                )
+        self.list_adapter.bind(on_selection_change=self.do_show_profile)
+        list_view = ListView(adapter=self.list_adapter)
+        self.listview_container.add_widget(list_view)
+
+    def do_show_profile(self, adapter):
+        selected = adapter.selection[0].index
+        data = adapter.data[]
 
     def _do_hisab(self, dt):
         self.do_hisab()

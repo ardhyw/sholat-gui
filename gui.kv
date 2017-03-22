@@ -8,6 +8,7 @@
     jeda_pendek: jeda_pendek
     jeda_panjang: jeda_panjang
     perhitungan: perhitungan
+    listview_container: listview_container
 
     orientation: 'vertical'
     BoxLayout:
@@ -178,8 +179,8 @@
                 BoxLayout:
                     spacing: '16sp'
                     orientation: 'vertical'
-                    Label:
-                        text: 'Ini nanti isinya list view'
+                    BoxLayout:
+                        id: listview_container
                     BoxLayout:
                         spacing: '16sp'
                         size_hint_y: None
