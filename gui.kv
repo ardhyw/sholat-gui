@@ -16,23 +16,43 @@
             group: 'menu'
             text: 'Setting'
             on_release: sm.current = 'setting'
+
     ScreenManager:
         id: sm
+        # Jadwal
         Screen:
             name: 'jadwal'
             BoxLayout:
                 orientation: 'vertical'
                 padding: '16sp'
+
+                Label:
+                    id: tanggal
+                    text: 'Ahad / 01 Jan 2017 / 02 Rab-II 1438 H / 01:23:45'
+                    font_size: '24sp'
+                    halign: 'center'
+                    height: '48sp'
+                    size_hint_y: None
+                    padding: '12sp','12sp'
+
+                Label:
+                    id: perhitungan
+                    text: 'Subuh - Syuruq - Dzuhur - Ashar - Maghrib - Isya'
+                    font_name: 'RobotoMono-Regular'
+
                 GridLayout:
                     cols: 4
                     size_hint_y: None
                     row_default_height: '48sp'
                     spacing: '16sp'
+                    height: self.minimum_height
+
                     Label:
                         text: 'Preset'
                     Spinner:
-                        value: 'Jakarta'
-                        values: ['Aceh', 'Medan', 'Palembang', 'Jakarta', 'Semarang']
+                        id: preset
+                        text: 'Jakarta'
+                    
                     Label:
                         text: 'Longitude'
                         halign: 'center'
@@ -41,6 +61,13 @@
                         size_hint_y: None
                         height: '16sp'
                         padding: '16sp'
+
+                    Label:
+                        text: 'Metode perhitungan'
+                    Spinner:
+                        text: 'Makkah'
+                        values: ['Makkah', 'MWL', 'Karachi']
+
                     Label:
                         text: 'Latitude'
                         halign: 'center'
@@ -49,6 +76,7 @@
                         size_hint_y: None
                         height: '16sp'
                         padding: '16sp'
+                    
                     Label:
                         text: 'Zona waktu'
                     TextInput:
@@ -56,17 +84,7 @@
                         text: '+7'
                         height: '16sp'
                         padding: '16sp'
-                    Label:
-                        text: 'Metode perhitungan'
-                    Spinner:
-                        text: 'Makkah'
-                        values: ['Makkah', 'MWL', 'Karachi']
-                    Label:
-                        text: 'Offset'
-                    TextInput:
-                        id: offset
-                        height: '16sp'
-                        padding: '16sp'
+
                     Label:
                         text: 'Jeda iqomah\n(pendek)'
                         halign: 'center'
@@ -74,6 +92,14 @@
                         id: jeda
                         height: '16sp'
                         padding: '16sp'
+
+                    Label:
+                        text: 'Offset'
+                    TextInput:
+                        id: offset
+                        height: '16sp'
+                        padding: '16sp'
+
                     Label:
                         text: 'Jeda iqomah\n(panjang)'
                         halign: 'center'
@@ -83,19 +109,19 @@
                         height: '16sp'
                         padding: '16sp'
 
-                Label:
-                    id: output
-                    text: 'Sample jadwal pada hari ini'
         Screen:
             name: 'teks'
             BoxLayout:
-                orientation: 'vertical'
                 spacing: '16sp'
                 padding: '16sp'
                 BoxLayout:
+                    orientation: 'vertical'
                     spacing: '16sp'
-                    size_hint_y: None
-                    height: '176sp'
+                    # running text
+                    TextInput:
+                        padding: '16sp'
+                        text: 'Tulis running text disini'
+                    # parameter running text
                     GridLayout:
                         cols: 2
                         size_hint_y: None
@@ -117,23 +143,23 @@
                         Spinner:
                             text: 'Normal'
                             values: ['Lambat', 'Normal', 'Cepat']
+                        Button:
+                            text: 'Buang'
+                        Button:
+                            text: 'Simpan'
+                BoxLayout:
+                    spacing: '16sp'
+                    orientation: 'vertical'
+                    Label:
+                        text: 'Ini nanti isinya list view'
                     BoxLayout:
                         spacing: '16sp'
-                        orientation: 'vertical'
-                        TextInput:
-                            id: teks
-                            text: 'Tulis running text disini'
-                            padding: '16sp'
-                        BoxLayout:
-                            spacing: '16sp'
-                            size_hint_y: None
-                            height: '48sp'
-                            Button:
-                                text: 'Buang'
-                            Button:
-                                text: 'Simpan'
-                Label:
-                    text: 'isi nya list view'
+                        size_hint_y: None
+                        height: '48sp'
+                        Button:
+                            text: 'Pindah naik'
+                        Button:
+                            text: 'Pindah turun'
 
         Screen:
             name: 'setting'
@@ -151,7 +177,6 @@
                     Label:
                         text: 'File konfigurasi'
                         text_size: self.size
-                        font_size: '18sp'
                     BoxLayout:
                         spacing: '16sp'
                         size_hint_y: None
@@ -163,6 +188,10 @@
                             size_hint_x: None
                             width: '100sp'
                         Button:
+                            text: 'Buka file'
+                            size_hint_x: None
+                            width: '100sp'
+                        Button:
                             text: 'Simpan'
                             size_hint_x: None
                             width: '100sp'
@@ -171,7 +200,6 @@
                     Label:
                         text: 'Perangkat'
                         text_size: self.size
-                        font_size: '18sp'
                     BoxLayout:
                         spacing: '16sp'
                         Spinner:
